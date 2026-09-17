@@ -1,22 +1,18 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
-import { publicMockAssets } from './model'
+import { createMockAdapter, publicMockAssets } from './model'
+import { preloadImages } from './preload'
 import logo from './assets/xpack-logo.svg'
 
-// Keep the inline shell visible until code, styles and every local card decode.
 const status = document.getElementById('boot-status')!
 const retry = document.getElementById('boot-retry') as HTMLButtonElement
-const urls = [...new Set([...publicMockAssets.map(asset => asset.image), logo])]
-const decoded = new Set<string>()
-function loadImage(src: string): Promise<void> {
-  return new Promise((resolve, reject) => {
-    const image = new Image()
-    const timer = setTimeout(() => { image.onload = image.onerror = null; reject(new Error('Image timeout')) }, 45000)
-    image.onload = () => { image.decode().then(() => { clearTimeout(timer); resolve() }, error => { clearTimeout(timer); reject(error) }) }
-    image.onerror = () => { clearTimeout(timer); reject(new Error('Image unavailable')) }
-    image.src = src
-  })
-}
+const query = new URLSearchParams(location.search)
+const initial = createMockAdapter(query.has('count') ? Number(query.get('count')) : 0, Number(query.get('huntCount') || 0)).getSnapshot()
+const firstImages = query.get('mode') === 'cardHunt'
+  ? initial.submissions.map(item => item.cardImage)
+  : initial.cards.map(card => card.image)
+// Limit speculative work; actual card elements load the remaining images on demand.
+const urls = [logo, ...firstImages.slice(0, 48), ...(!firstImages.length ? publicMockAssets.slice(0, 3).map(asset => asset.image) : [])]
 let busy = false
 async function boot() {
   if (busy) return
@@ -24,25 +20,15 @@ async function boot() {
   retry.hidden = true
   status.textContent = '正在準備收藏資產…'
   try {
-    const app = import('./App').catch(error => { retry.onclick = () => location.reload(); throw error })
-    const pending = urls.filter(src => !decoded.has(src))
-    let cursor = 0
-    // Start the per-image timeout only when its request enters this worker pool.
-    const workers = Array.from({ length: Math.min(6, pending.length) }, async () => {
-      while (cursor < pending.length) {
-        const src = pending[cursor++]
-        await loadImage(src)
-        decoded.add(src)
-        status.textContent = `正在準備收藏資產 · ${decoded.size} / ${urls.length}`
-      }
-    })
-    const [results, { default: App }] = await Promise.all([Promise.allSettled(workers), app])
-    if (results.some(result => result.status === 'rejected')) throw new Error('Assets incomplete')
-    await document.fonts.ready
+    const [{ default: App }] = await Promise.all([
+      import('./App'),
+      preloadImages(urls, (loaded, total) => { status.textContent = `正在準備收藏資產 · ${loaded} / ${total}` }),
+    ])
     createRoot(document.getElementById('root')!).render(<React.StrictMode><App /></React.StrictMode>)
   } catch {
-    status.textContent = '部分資源尚未載入，請檢查網絡後重試'
+    status.textContent = '展示內容未能載入，請檢查網絡後重試'
     retry.hidden = false
+    retry.onclick = () => location.reload()
   } finally { busy = false }
 }
 retry.onclick = () => { void boot() }

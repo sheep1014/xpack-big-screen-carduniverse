@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite --config vite.public-screen.config.ts",
     "dev:public-screen": "vite --config vite.public-screen.config.ts",
-    "build": "tsc -p tsconfig.public-screen.json && vite build --config vite.public-screen.config.ts && node scripts/pages-entry.mjs",
+    "build": "node scripts/build-loading-shell.mjs && tsc -p tsconfig.public-screen.json && vite build --config vite.public-screen.config.ts && node scripts/pages-entry.mjs",
     "build:public-screen": "npm run build"
   },
   "dependencies": {
