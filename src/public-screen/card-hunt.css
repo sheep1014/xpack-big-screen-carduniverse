@@ -35,8 +35,8 @@
 .ps-hunt-queue-section{position:absolute;top:1840px;left:164px;right:164px}
 .ps-viewport .ps-hunt-latest{border:0;background:none;font-size:28px;color:#bbd7e7!important;padding:5px 0;display:flex;gap:26px;align-items:center}
 .ps-hunt-latest>span{font-size:38px}
-.ps-hunt-queue{height:848px;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#66859b55 transparent;outline-offset:8px}
-.ps-hunt-row{height:212px;width:100%;display:grid;grid-template-columns:220px 104px minmax(0,1fr) 54px;gap:40px;align-items:center;text-align:left;border:0;background:none;padding:20px 22px 20px 0}
+.ps-hunt-queue{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:212px;column-gap:64px;align-content:start;height:848px;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#66859b55 transparent;outline-offset:8px}
+.ps-hunt-row{height:212px;width:100%;display:grid;grid-template-columns:140px 104px minmax(0,1fr) 36px;gap:28px;align-items:center;text-align:left;border:0;background:none;padding:20px 22px 20px 0}
 .ps-hunt-row .ps-hunt-rank{text-align:center;white-space:nowrap;font-size:40px;font-weight:400;color:#e4f0f8}
 .ps-hunt-row .ps-hunt-art{width:104px;height:172px;border-radius:5px}
 .ps-hunt-row>strong{font-size:34px;font-weight:400;color:#b8cad6;overflow-wrap:anywhere}
