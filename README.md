@@ -10,8 +10,8 @@ Node 22.12+，執行 `npm ci`、`npm run dev`。
 
 ## 部署
 `npm run build` 輸出 dist-public-screen，根 index.html 為雲端入口。
-main 保存源碼；gh-pages 保存靜態建置。推送 main 後 GitHub Actions 自動更新 gh-pages。
-GitHub Pages 設為 gh-pages 分支 / 根目錄。
+main 保存源碼；推送 main 後 GitHub Actions 自動建置並發布 Pages。
+GitHub Pages 使用 GitHub Actions 作為部署來源。
 
 ## 操作與素材
 1 / 2 切換模式，D 開啟調試，Esc 關閉詳情。Card Hunt 點空白處新增模擬提交。
