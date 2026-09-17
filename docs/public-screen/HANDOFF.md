@@ -11,7 +11,7 @@
 
 ## 部署
 將 deploy.zip 全部解壓到靜態站點根目錄；不需要 Node 服務或 API。
-建議部署到產品可穩定訪問的靜態託管/CDN，GitHub 僅作源碼管理。此包尚未公開部署，域名及平台待指定。
+建議部署到產品可穩定訪問的靜態託管/CDN，GitHub 僅作源碼管理。獨立部署地址：https://sheep1014.github.io/xpack-big-screen-carduniverse/；倉庫：https://github.com/sheep1014/xpack-big-screen-carduniverse。main 推送後由 GitHub Actions 自動發布。
 HTML 使用 Cache-Control: no-cache；assets/ 雜湊檔名使用 public,max-age=31536000,immutable；啟用 gzip/Brotli。
 先上傳新 assets，再切換 HTML；保留上一版 assets 以便舊頁及回滾。勿把資源 404 回退成 HTML。
 無 Service Worker；不承諾清除瀏覽器快取後仍可離線重載。現場可用本機 HTTP 服務完全避開外網。
