@@ -1,0 +1,26 @@
+{
+  "name": "xpack-big-screen-carduniverse",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --config vite.public-screen.config.ts",
+    "dev:public-screen": "vite --config vite.public-screen.config.ts",
+    "build": "tsc -p tsconfig.public-screen.json && vite build --config vite.public-screen.config.ts && node scripts/pages-entry.mjs",
+    "build:public-screen": "npm run build"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "latest",
+    "lucide-react": "latest",
+    "vite": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "tailwindcss": "latest",
+    "typescript": "latest"
+  }
+}
