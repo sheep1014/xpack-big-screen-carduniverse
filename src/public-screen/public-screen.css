@@ -52,7 +52,7 @@ html:has(.ps-viewport),body:has(.ps-viewport){margin:0;background:#030507;overfl
 @keyframes ps-count-light{0%{transform:translateX(-100%);opacity:0}25%{opacity:1}100%{transform:translateX(100%);opacity:0}}
 .ps-slot[data-detail-selected=true],.ps-presentation[inert] .ps-arrival-info{visibility:hidden}
 .ps-detail{position:absolute;inset:0;z-index:2400}
-.ps-detail-shade{position:absolute;inset:0;background:#03080e99;opacity:0;animation:ps-detail-dim .45s ease-out forwards}
+.ps-detail-shade{position:absolute;inset:0;background:#03080edb;opacity:0;animation:ps-detail-dim .45s ease-out forwards}
 .ps-detail-art{position:absolute;left:0;top:0;width:100px;height:166px;transform-origin:center;border-radius:7px;border:1px solid #c3d9e288;box-shadow:0 8px 20px #0008;overflow:hidden}
 .ps-detail-close{position:absolute;top:625px;left:1500px;width:80px;height:80px;display:grid;place-items:center;padding:0;background:none;border:0;border-radius:50%;line-height:0;color:#d3e4ed}
 .ps-detail-close:hover{background:#c8eaff0d}

@@ -47,16 +47,16 @@ export function CardHunt({ submissions, hunt, active, onInspect }: Props) {
       <div className="ps-hunt-meta"><span>{huntConfig.roundLabel}</span><span className="ps-hunt-status"><i />{huntConfig.status}</span><span className="ps-hunt-total"><strong key={ordered.length}>{ordered.length}</strong> 筆提交</span></div>
     </header>
     <section className="ps-hunt-first" aria-label="最早提交的三筆">
-      <div className="ps-hunt-section-heading"><h2>最早提交</h2><p>按上傳時間排序 · 結果由主持人現場確認</p></div>
+      <div className="ps-hunt-section-heading"><h2>最早提交</h2></div>
       <div className="ps-hunt-featured">
         {[0, 1, 2].map(index => { const item = ordered[index]; return item ? <button key={item.id} className="ps-hunt-feature" data-new={newId === item.id} aria-label={`查看${huntOrder(item.rank)}的提交，${item.username}`} onClick={event => open(item, event.currentTarget)}>
-          <span className="ps-hunt-rank">{huntOrder(item.rank)}</span><HuntArt submission={item} /><strong>{item.username}</strong>
+          <span className="ps-hunt-rank">{huntOrder(item.rank)}</span><HuntArt submission={item} /><span className="ps-hunt-card-copy">{item.cardDetails?.name && <span className="ps-hunt-card-name" title={item.cardDetails.name}>{item.cardDetails.name}</span>}<strong>{item.username}</strong></span>
         </button> : <div key={`empty-${index}`} className="ps-hunt-feature ps-hunt-feature--empty"><span className="ps-hunt-rank">{huntOrder(index + 1)}</span><WaitingSignal index={index} /><strong>等待提交</strong></div> })}
       </div>
     </section>
     {rest.length > 0 && <section className="ps-hunt-queue-section" aria-label="即時隊列">
         <div ref={queue} className="ps-hunt-queue" tabIndex={0} role="region" aria-label="即時隊列，按上傳時間排序" onScroll={() => { const el = queue.current!; follow.current = el.scrollHeight - el.scrollTop - el.clientHeight < 48 }} onKeyDown={e => { if (e.key === 'PageDown' || e.key === 'PageUp') { e.preventDefault(); scrollPage(e.key === 'PageDown' ? 1 : -1) } }}>
-          {rest.map(item => <button key={item.id} className="ps-hunt-row" data-new={newId === item.id} aria-label={`查看${huntOrder(item.rank)}的提交，${item.username}`} onClick={event => open(item, event.currentTarget)}><span className="ps-hunt-rank">{huntOrder(item.rank)}</span><HuntArt submission={item} /><strong>{item.username}</strong><span className="ps-hunt-inspect-mark" aria-hidden="true">↗</span></button>)}
+          {rest.map(item => <button key={item.id} className="ps-hunt-row" data-new={newId === item.id} aria-label={`查看${huntOrder(item.rank)}的提交，${item.username}`} onClick={event => open(item, event.currentTarget)}><span className="ps-hunt-rank">{huntOrder(item.rank)}</span><HuntArt submission={item} /><span className="ps-hunt-card-copy">{item.cardDetails?.name && <span className="ps-hunt-card-name" title={item.cardDetails.name}>{item.cardDetails.name}</span>}<strong>{item.username}</strong></span><span className="ps-hunt-inspect-mark" aria-hidden="true">↗</span></button>)}
         </div>
     </section>}
   </section>

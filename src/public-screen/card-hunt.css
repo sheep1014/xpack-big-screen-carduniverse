@@ -63,7 +63,7 @@
 .ps-hunt-inspection{position:absolute;inset:0;z-index:2500}
 .ps-hunt-inspection-shade{position:absolute;inset:0;background:#03080eeb;animation:ps-detail-dim .4s both}
 .ps-hunt-inspection-art{position:absolute;left:0;top:0;width:640px;height:1062.4px;transform-origin:top left}
-.ps-hunt-inspection-art .ps-hunt-art{width:100%;height:100%;border:1px solid #c1dbea55}
+.ps-hunt-inspection-art .ps-hunt-art{width:100%;height:100%;border:0;border-radius:0;background:transparent;box-shadow:none}
 .ps-hunt-close{position:absolute;left:1510px;top:590px;width:100px;height:100px;padding:0;display:grid;place-items:center;border:0;border-radius:50%;background:none;line-height:0}
 .ps-hunt-close:hover{background:#c8eaff0d}
 .ps-hunt-inspection-copy{position:absolute;top:1840px;left:452px;width:1400px;text-align:center;opacity:0;transform:translateY(18px);transition:opacity .25s,transform .35s}
@@ -106,11 +106,11 @@
 
 /* Stage information: one challenge, one compact status line, then the cards. */
 .ps-hunt-challenge h1{margin:0 auto;font-size:88px;text-align:center}
-.ps-hunt-meta{display:flex;align-items:center;justify-content:center;gap:32px;margin-top:32px;color:#8fa6b6;font-size:28px;line-height:1.5}
+.ps-hunt-meta{display:flex;align-items:center;justify-content:center;gap:32px;margin-top:32px;color:#8fa6b6;font-size:34px;line-height:1.5}
 .ps-hunt-meta>span+span{border-left:1px solid #a8c0d02b;padding-left:32px}
 .ps-hunt-meta .ps-hunt-status{display:flex;align-items:center;gap:14px}
 .ps-hunt-total{display:flex;align-items:center;gap:12px}
-.ps-hunt-total strong{font-size:32px;font-weight:400;color:#c7d8e3;font-variant-numeric:tabular-nums;animation:ps-hunt-count .45s ease-out both}
+.ps-hunt-total strong{font-size:38px;font-weight:400;color:#c7d8e3;font-variant-numeric:tabular-nums;animation:ps-hunt-count .45s ease-out both}
 .ps-hunt-first .ps-hunt-section-heading{justify-content:flex-start;gap:36px}
 .ps-hunt-first .ps-hunt-section-heading p{color:#91a7b7}
 .ps-hunt-queue-section{top:1790px;border-top:1px solid #bed5e21a;padding-top:28px}
@@ -123,3 +123,11 @@
 .ps-hunt-inspection-facts dd{margin:0;font-size:34px;line-height:1.4;color:#d9e7ef}
 .ps-hunt-inspection-submitter{display:flex;justify-content:center;align-items:center;gap:48px;margin-top:30px;font-size:30px;color:#a9c1d1}
 .ps-hunt-inspection-submitter time{font-size:30px}
+
+/* Card identity precedes the submitter in both featured cards and the queue. */
+.ps-hunt-card-copy{display:flex;flex-direction:column;gap:8px;min-width:0;max-width:100%}
+.ps-hunt-card-name{font-size:32px;font-weight:400;line-height:1.3;color:#e0eaf0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ps-hunt-card-copy>strong{font-size:30px;line-height:1.3;font-weight:400;color:#9bb0bf;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ps-hunt-feature>.ps-hunt-card-copy{margin-top:24px;width:100%;text-align:center}
+.ps-hunt-row .ps-hunt-card-name{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow-wrap:anywhere}
+.ps-hunt-queue-section{top:1854px}
